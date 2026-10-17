@@ -68,8 +68,8 @@ features written to cheat
 all four get caught. A checker only ever run against correct code has never
 been tested.
 
-Each of the four arrives by a plausible route rather than by typing
-something obviously wrong:
+Each of the four has a plausible route in. Nobody types these
+deliberately:
 
 | leak | how it gets in |
 |---|---|
@@ -149,7 +149,7 @@ about whether today's inputs still resemble that stretch. `drift.py` runs a
 sliding-window z-score over features and over rolling performance.
 
 The data generator plants a volatility regime change at bar **600**, so the
-detector can be checked against ground truth rather than against a plot:
+detector can be checked against ground truth:
 
 ```
 ret_1            ok                 z=  -0.05
@@ -195,7 +195,7 @@ should not.
 | `test_model.py` | 9 | `nan` input is rejected with the column named; the same seed gives identical predictions and a different seed does not |
 | `test_reproducibility.py` | 6 | two identical pipeline runs give byte-identical net returns and an identical report |
 
-Two of those are controls rather than checks on the subject:
+Two of those are controls:
 
 **The negative control.** At `autocorr=0.0` the generated returns are
 independent and nothing is predictable. The walk-forward Sharpe has to come
@@ -207,8 +207,8 @@ which makes this the cheapest regression test in the suite.
 run the identical procedure: correct folds, correct purge, correct embargo,
 costs charged. Sharpe goes from **1.592 to 13.008** and max drawdown from
 **0.201 to 0.002**. Split
-discipline does not protect you from a feature that reads ahead, which is
-why the causality checker is a separate gate rather than a comment.
+discipline does not protect you from a feature that reads ahead. That is
+why the causality checker is a separate gate with its own tests.
 
 ---
 

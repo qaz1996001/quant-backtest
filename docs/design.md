@@ -54,8 +54,8 @@ Features return arrays the same length as the input, with `nan` during
 warm-up, rather than shorter arrays. Dropping rows at the source shifts
 every index downstream by a different amount per feature, and that shift is
 invisible until the equity curve looks too good. `Design.rows` carries the
-bar index of every retained row, so the translation back to bar space is one
-lookup rather than arithmetic repeated at each call site.
+bar index of every retained row, so the translation back to bar space is a
+single lookup at one call site.
 
 ---
 
@@ -207,7 +207,7 @@ Annualisation is a parameter of every function that annualises, and the
 `bars_per_year` used is carried in the report. `252` appears once, as a value
 in `BARS_PER_YEAR`, never as a literal inside a formula. The same return
 series annualised daily and weekly differ by `sqrt(252/52)`, about **2.2x**,
-and that is asserted rather than described.
+and `test_annualisation_is_a_parameter_not_a_constant` asserts it.
 
 ---
 
