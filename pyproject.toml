@@ -1,0 +1,23 @@
+[project]
+name = "qbt"
+version = "0.1.0"
+description = "A backtest harness where the tests are the deliverable: lookahead bias, purged walk-forward splits, costs and degenerate-strategy metrics are all asserted"
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.24", "lightgbm>=4.0"]
+license = { text = "MIT" }
+
+[project.optional-dependencies]
+dev = ["pytest>=7"]
+# Fallback backend, used only when a lightgbm wheel is unavailable.
+fallback = ["scikit-learn>=1.3"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src", "."]
+testpaths = ["tests"]
